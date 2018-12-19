@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useMutationEffect, useLayoutEffect } from 'react'
 import Logotype from '../components/logotype'
 import DarkToggle from '../components/dark-toggle'
 import Head from 'next/head'
@@ -24,8 +24,63 @@ const themes = {
   }
 }
 
+const useRaf = callback => {
+  const callbackRef = useRef(callback);
+  useMutationEffect(
+    () => {
+      callbackRef.current = callback;
+    },
+    [callback]
+  );
+
+  const loop = () => {
+    frameRef.current = requestAnimationFrame(
+      loop
+    );
+    const cb = callbackRef.current;
+    cb();
+  };
+
+  const frameRef = useRef();
+  useLayoutEffect(() => {
+    frameRef.current = requestAnimationFrame(
+      loop
+    );
+    return () =>
+      cancelAnimationFrame(frameRef.current);
+  }, []);
+};
+
 export default () => {
   const [activeTheme, setTheme] = useState('light')
+  const [activeSection, setActiveSection] = useState('#experience')
+  const experience = useRef(null)
+  const oss = useRef(null)
+  const press = useRef(null)
+  const education = useRef(null)
+  const information = useRef(null) 
+  
+  useRaf(() => {
+    if (typeof window !== 'undefined') {
+      const { innerHeight, scrollY } = window
+      const scrollOffset = innerHeight + scrollY
+
+      if (information.current && scrollOffset > information.current.offsetTop) {
+        window.history.pushState(null, null, '#information')
+      } else if (education.current && scrollOffset > education.current.offsetTop) {
+        window.history.pushState(null, null, '#education')
+      } else if (press.current && scrollOffset > press.current.offsetTop) {
+        window.history.pushState(null, null, '#press')
+      } else if (oss.current && scrollOffset > oss.current.offsetTop) {
+        window.history.pushState(null, null, '#oss')
+      } else if (experience.current && scrollOffset > experience.current.offsetTop) {
+        window.history.pushState(null, null, '#experience')
+      }
+  
+      setActiveSection(window.location.hash.length > 0 ? window.location.hash : '#experience')
+    }
+  })
+
   const theme = themes[activeTheme]
 
   return (
@@ -42,11 +97,21 @@ export default () => {
         <Logotype/>
       </div>
       <div className="navigation">
-        <a href="#experience">Experience</a>
-        <a href="#oss">OSS Contributions</a>
-        <a href="#press">Press</a>
-        <a href="#education">Education</a>
-        <a href="#information">Information</a>
+        <a href="#experience" className={activeSection === '#experience' ? 'active' : ''}>
+          Experience
+        </a>
+        <a href="#oss" className={activeSection === '#oss' ? 'active' : ''}>
+          OSS Contributions
+        </a>
+        <a href="#press" className={activeSection === '#press' ? 'active' : ''}>
+          Press
+        </a>
+        <a href="#education" className={activeSection === '#education' ? 'active' : ''}>
+          Education
+        </a>
+        <a href="#information" className={activeSection === '#information' ? 'active' : ''}>
+          Information
+        </a>
       </div>
     </div>
     <DarkToggle
@@ -54,7 +119,7 @@ export default () => {
       activeTheme={activeTheme}
     />
     <div className="content">
-      <div id="experience">
+      <div id="experience" ref={experience}>
         <div className="work">
           <h3>Jun 2016-Present</h3>
           <h2>Head of Design at ZEIT</h2>
@@ -157,7 +222,7 @@ export default () => {
           <h2>Designer at TSYA</h2>
         </div>
       </div>
-      <div id="oss">
+      <div id="oss" ref={oss}>
         <h3>OSS Contributions</h3>
         <div className="project">
           <h2>Tipbox</h2>
@@ -180,7 +245,7 @@ export default () => {
           <p>JSX in Markdown for ambitious projects</p>
         </div>
       </div>
-      <div id="press">
+      <div id="press" ref={press}>
         <h3>Press</h3>
         <div className="article">
           <h2>!important</h2>
@@ -199,7 +264,7 @@ export default () => {
           <p><a href="https://designshack.net/articles/ux-design/google-material-design-everything-you-need-to-know/" target="_blank">designshack.net/articles/ux-design/google-material-design-everything-you-need-to-know/</a></p>
         </div>
       </div>
-      <div id="education">
+      <div id="education" ref={education}>
         <h3>Education</h3>
         <div className="degree">
           <h2>Design</h2>
@@ -210,7 +275,7 @@ export default () => {
           <p>First Certificate in English (Cambridge Essol Examinations)</p>
         </div>
       </div>
-      <div id="information">
+      <div id="information" ref={information}>
         <h3>Information</h3>
         <h2>Skills</h2>
         <div className="skills">
@@ -243,7 +308,8 @@ export default () => {
         transition: color 0.2s ease;
       }
 
-      a:hover {
+      a:hover,
+      a.active {
         color: ${theme.main};
       }
 
@@ -339,7 +405,7 @@ export default () => {
         border-bottom: 1px solid ${theme.white};
         color: ${theme.link};
         line-height: 2em;
-        transition: border-bottom 0.2s ease, color 0.2s ease;
+        transition: color 0.2s ease;
       }
 
       p a:hover {
