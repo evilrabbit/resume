@@ -258,7 +258,6 @@ export default () => (
       }
 
       #information {
-        border-bottom: 1px solid #eaeaea;
         margin-bottom: 100px;
         padding-bottom: 50px;
       }
