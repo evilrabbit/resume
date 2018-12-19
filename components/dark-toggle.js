@@ -55,6 +55,13 @@ export default ({ onClick, activeTheme }) => (
           transform: translateY(0px);
           opacity: 1;
         }
+
+        @media (max-width: 1200px) {
+          .toggle {
+            top: 10px;
+            right: 20px;
+          }
+        }
       `}
     </style>
   </div>
