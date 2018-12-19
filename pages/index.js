@@ -19,7 +19,7 @@ export default () => (
         <a href="#oss">OSS Contributions</a>
         <a href="#press">Press</a>
         <a href="#education">Education</a>
-        <a href="#info">Information</a>
+        <a href="#information">Information</a>
       </div>
     </div>
     <div className="content">
@@ -334,7 +334,7 @@ export default () => (
 
       .skill {
         padding: 2px 10px;
-        border: 1px solid #eaeaea;
+        border: 1px solid #e3e5e7;
         border-radius: 5px;
         margin-right: 10px;
         margin-top: 10px;
