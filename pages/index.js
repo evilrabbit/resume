@@ -16,11 +16,11 @@ const themes = {
   dark: {
     bodyBg: 'black',
     main: 'white',
-    gray: '#999',
-    darkGray: '#444',
-    link: '#0076FF',
-    skill: '#e3e5e7',
-    border: '#eaeaea'
+    gray: '#ccc',
+    darkGray: '#999',
+    link: '#fff',
+    skill: '#333',
+    border: '#333'
   }
 }
 
