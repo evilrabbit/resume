@@ -1,7 +1,34 @@
+import { useState } from 'react'
 import Logotype from '../components/logotype'
+import DarkToggle from '../components/dark-toggle'
 import Head from 'next/head'
 
-export default () => (
+const themes = {
+  light: {
+    bodyBg: 'white',
+    main: 'black',
+    gray: '#999',
+    darkGray: '#444',
+    link: '#0076FF',
+    skill: '#e3e5e7',
+    border: '#eaeaea'
+  },
+  dark: {
+    bodyBg: 'black',
+    main: 'white',
+    gray: '#999',
+    darkGray: '#444',
+    link: '#0076FF',
+    skill: '#e3e5e7',
+    border: '#eaeaea'
+  }
+}
+
+export default () => {
+  const [activeTheme, setTheme] = useState('light')
+  const theme = themes[activeTheme]
+
+  return (
   <div>
   <Head>
     <title>Evil Rabbit —  Resume</title>
@@ -22,6 +49,10 @@ export default () => (
         <a href="#information">Information</a>
       </div>
     </div>
+    <DarkToggle
+      onClick={() => activeTheme === 'light' ? setTheme('dark') : setTheme('light')}
+      activeTheme={activeTheme}
+    />
     <div className="content">
       <div id="experience">
         <div className="work">
@@ -205,14 +236,15 @@ export default () => (
     <style jsx>{`
       a {
         cursor: pointer;
-        color: #999;
+        color: ${theme.gray};
         line-height: 2.5em;
         text-decoration: none;
         transition: all .2s ease;
+        transition: color 0.2s ease;
       }
 
       a:hover {
-        color: black;
+        color: ${theme.main};
       }
 
       .article {
@@ -246,15 +278,17 @@ export default () => (
       }
 
       #education {
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid ${theme.border};
         margin-bottom: 100px;
         padding-bottom: 50px;
+        transition: border-bottom 0.2s ease;
       }
 
       #experience {
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid ${theme.border};
         margin-top: 150px;
         margin-bottom: 100px;
+        transition: border-bottom 0.2s ease;
       }
 
       #information {
@@ -269,9 +303,10 @@ export default () => (
       li:before {
         content: '–';
         display: inline-block;
-        color: #999;
+        color: ${theme.gray};
         position: absolute;
         margin-left: -15px;
+        transition: color 0.2s ease;
       }
 
       .logotype {
@@ -288,30 +323,34 @@ export default () => (
       }
 
       #oss {
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid ${theme.border};
         margin-bottom: 100px;
         padding-bottom: 50px;
+        transition: border-bottom 0.2s ease;
       }
 
       p {
         line-height: 2em;
-        color: #444;
+        color: ${theme.darkGray};
+        transition: color 0.2s ease;
       }
 
       p a {
-        border-bottom: 1px solid #FFF;
-        color: #0076FF;
+        border-bottom: 1px solid ${theme.white};
+        color: ${theme.link};
         line-height: 2em;
+        transition: border-bottom 0.2s ease, color 0.2s ease;
       }
 
       p a:hover {
-        border-bottom: 1px solid #0076FF;
+        border-bottom: 1px solid ${theme.link};
       }
 
       #press {
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid ${theme.border};
         margin-bottom: 100px;
         padding-bottom: 50px;
+        transition: border-bottom 0.2s ease;
       }
 
       .project {
@@ -333,10 +372,11 @@ export default () => (
 
       .skill {
         padding: 2px 10px;
-        border: 1px solid #e3e5e7;
+        border: 1px solid ${theme.skill};
         border-radius: 5px;
         margin-right: 10px;
         margin-top: 10px;
+        transition: border 0.2s ease;
       }
 
       .skill p {
@@ -395,8 +435,8 @@ export default () => (
     `}</style>
     <style global jsx>{`
       body {
-        background-color: #fff;
-        color: #000;
+        background-color: ${theme.bodyBg};
+        color: ${theme.main};
         font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
         font-size: 1em;
         font-style: normal;
@@ -404,8 +444,10 @@ export default () => (
         margin: 0 20px 0 20px;
         line-height: 1.47059;
         letter-spacing: -.022em;
+        transition: background-color 0.2s ease, color 0.2s ease;
       }
     `}</style>
     </div>
   </div>
-)
+  )
+}
