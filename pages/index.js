@@ -1,6 +1,14 @@
 import Logotype from '../components/logotype'
+import Head from 'next/head'
 
 export default () => (
+  <div>
+  <Head>
+    <title>Evil Rabbit —  Resume</title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  </Head>
   <div className="wrapper">
     <div className="sidebar">
       <div className="logotype">
@@ -309,6 +317,32 @@ export default () => (
         display: flex;
         justify-content: center;
       }
+
+      @media (max-width: 1000px) {
+        .logotype {
+          margin-bottom: 0;
+          position: relative;
+          top: none;
+        }
+        .navigation {
+          margin-bottom: 100px;
+          position: relative;
+          top: none;
+        }
+        .wrapper {
+          flex-direction: column;
+        }
+        .sidebar {
+          padding: 0px;
+          width: 100%;
+        }
+        .content {
+          width: 100%;
+        }
+        h2 {
+          font-size: 2em;
+        }
+      }
     `}</style>
     <style global jsx>{`
       body {
@@ -318,10 +352,11 @@ export default () => (
         font-size: 1em;
         font-style: normal;
         font-weight: 400;
-        margin: 0;
+        margin: 0 20px 0 20px;
         line-height: 1.47059;
         letter-spacing: -.022em;
       }
     `}</style>
+    </div>
   </div>
 )
