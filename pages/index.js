@@ -82,8 +82,8 @@ export default class Index extends React.Component {
     })
   }
   
-  setTheme = (theme) => {
-    this.setState({ theme })
+  setTheme = (activeTheme) => {
+    this.setState({ activeTheme })
   }
 
   render() {
