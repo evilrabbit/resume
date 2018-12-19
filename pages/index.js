@@ -54,30 +54,33 @@ const useRaf = callback => {
 export default () => {
   const [activeTheme, setTheme] = useState('light')
   const [activeSection, setActiveSection] = useState('#experience')
-  const experience = useRef(null)
-  const oss = useRef(null)
-  const press = useRef(null)
-  const education = useRef(null)
-  const information = useRef(null) 
+  const experience = document.querySelector('#experience')
+  const oss = document.querySelector('#oss')
+  const press = document.querySelector('#press')
+  const education = document.querySelector('#education')
+  const information = document.querySelector('#information')
   
   useRaf(() => {
     if (typeof window !== 'undefined') {
       const { innerHeight, scrollY } = window
       const scrollOffset = innerHeight + scrollY
 
-      if (information.current && scrollOffset > information.current.offsetTop) {
+      if (scrollOffset > information.offsetTop) {
         window.history.pushState(null, null, '#information')
-      } else if (education.current && scrollOffset > education.current.offsetTop) {
+        setActiveSection('#information')
+      } else if (scrollOffset > education.offsetTop) {
         window.history.pushState(null, null, '#education')
-      } else if (press.current && scrollOffset > press.current.offsetTop) {
+        setActiveSection('#education')
+      } else if (scrollOffset > press.offsetTop) {
         window.history.pushState(null, null, '#press')
-      } else if (oss.current && scrollOffset > oss.current.offsetTop) {
+        setActiveSection('#press')
+      } else if (scrollOffset > oss.offsetTop) {
         window.history.pushState(null, null, '#oss')
-      } else if (experience.current && scrollOffset > experience.current.offsetTop) {
+        setActiveSection('#oss')
+      } else if (scrollOffset > experience.offsetTop) {
         window.history.pushState(null, null, '#experience')
+        setActiveSection('#experience')
       }
-  
-      setActiveSection(window.location.hash.length > 0 ? window.location.hash : '#experience')
     }
   })
 
@@ -402,10 +405,10 @@ export default () => {
       }
 
       p a {
-        border-bottom: 1px solid ${theme.white};
+        border-bottom: 1px solid ${theme.bodyBg};
         color: ${theme.link};
         line-height: 2em;
-        transition: color 0.2s ease;
+        transition: all 0.2s ease;
       }
 
       p a:hover {
