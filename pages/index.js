@@ -179,6 +179,27 @@ export default () => (
           <p>First Certificate in English (Cambridge Essol Examinations)</p>
         </div>
       </div>
+      <div id="information">
+        <h3>Information</h3>
+        <h2>Skills</h2>
+        <div className="skills">
+          <div className="skill">
+            <p>Branding</p>
+          </div>
+          <div className="skill">
+            <p>Marketing Design</p>
+          </div>
+          <div className="skill">
+            <p>User Experience</p>
+          </div>
+          <div className="skill">
+            <p>User Interface</p>
+          </div>
+          <div className="skill">
+            <p>Product Design</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <style jsx>{`
@@ -234,6 +255,12 @@ export default () => (
         border-bottom: 1px solid #eaeaea;
         margin-top: 150px;
         margin-bottom: 100px;
+      }
+
+      #information {
+        border-bottom: 1px solid #eaeaea;
+        margin-bottom: 100px;
+        padding-bottom: 50px;
       }
 
       li {
@@ -301,6 +328,22 @@ export default () => (
         width: 200px;
       }
 
+      .skills {
+        display: flex;
+      }
+
+      .skill {
+        padding: 2px 10px;
+        border: 1px solid #eaeaea;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-top: 10px;
+      }
+
+      .skill p {
+        margin: 0;
+      }
+
       ul {
         padding: 0;
         list-style-type: none;
@@ -318,7 +361,13 @@ export default () => (
         justify-content: center;
       }
 
-      @media (max-width: 1000px) {
+      @media (max-width: 1200px) {
+        .content {
+          width: 100%;
+        }
+        h2 {
+          font-size: 2em;
+        }
         .logotype {
           margin-bottom: 0;
           position: relative;
@@ -329,19 +378,20 @@ export default () => (
           position: relative;
           top: none;
         }
-        .wrapper {
-          flex-direction: column;
-        }
         .sidebar {
           padding: 0px;
           width: 100%;
         }
-        .content {
-          width: 100%;
+        .skills {
+          flex-direction: column;
         }
-        h2 {
-          font-size: 2em;
+        .skill {
+          margin-bottom: 12px;
         }
+        .wrapper {
+          flex-direction: column;
+        }
+
       }
     `}</style>
     <style global jsx>{`
