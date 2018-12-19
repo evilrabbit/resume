@@ -39,7 +39,7 @@ export default class Index extends React.Component {
   press = createRef()
   education = createRef()
   information = createRef()
-  
+
   scrollspy = () => {
     this.scrollSpyID = requestAnimationFrame(() => {
       const { innerHeight, scrollY } = window
@@ -81,7 +81,7 @@ export default class Index extends React.Component {
       }
     })
   }
-  
+
   setTheme = (activeTheme) => {
     this.setState({ activeTheme })
   }
@@ -89,7 +89,7 @@ export default class Index extends React.Component {
   render() {
     const { activeSection, activeTheme } = this.state
     const theme = themes[activeTheme]
-  
+
     return (
     <div>
     <Head>
@@ -145,7 +145,6 @@ export default class Index extends React.Component {
                 <li>Release Videos / Announcements</li>
                 <li>Continually scaling the graphic system of <a href="https://zeit.co/" target="_blank">ZEIT</a>, <a href="https://nextjs.org/" target="_blank">Next.js</a> and <a href="https://hyper.is/" target="_blank">Hyper</a> — among others</li>
                 <li>Improving the user experience and the graphic interface of the platform</li>
-                <li>Maintaining a positive culture within the design team</li>
                 <li>Recruiting and hiring for the design team</li>
               </ul>
             </p>
@@ -304,7 +303,7 @@ export default class Index extends React.Component {
           </div>
         </div>
       </div>
-  
+
       <style jsx>{`
         a {
           cursor: pointer;
@@ -314,65 +313,65 @@ export default class Index extends React.Component {
           transition: all .2s ease;
           transition: color 0.2s ease;
         }
-  
+
         a:hover,
         a.active {
           color: ${theme.main};
         }
-  
+
         .article {
           margin-bottom: 50px;
         }
-  
+
         .article p {
           margin: 0;
         }
-  
+
         .content {
           width: 700px;
         }
-  
+
         .degree {
           margin-bottom: 50px;
         }
-  
+
         .degree p {
           margin: 0;
         }
-  
+
         h2 {
           font-size: 3em;
           margin: 0;
         }
-  
+
         h3 {
           margin: 0;
           text-transform: uppercase;
         }
-  
+
         #education {
           border-bottom: 1px solid ${theme.border};
           margin-bottom: 100px;
           padding-bottom: 50px;
           transition: border-bottom 0.2s ease;
         }
-  
+
         #experience {
           border-bottom: 1px solid ${theme.border};
           margin-top: 150px;
           margin-bottom: 100px;
           transition: border-bottom 0.2s ease;
         }
-  
+
         #information {
           margin-bottom: 100px;
           padding-bottom: 50px;
         }
-  
+
         li {
           margin-bottom: 10px;
         }
-  
+
         li:before {
           content: '–';
           display: inline-block;
@@ -381,68 +380,68 @@ export default class Index extends React.Component {
           margin-left: -15px;
           transition: color 0.2s ease;
         }
-  
+
         .logotype {
           margin-bottom: 50px;
           position: sticky;
           top: 60px;
         }
-  
+
         .navigation {
           display: flex;
           flex-direction: column;
           position: sticky;
           top: 150px;
         }
-  
+
         #oss {
           border-bottom: 1px solid ${theme.border};
           margin-bottom: 100px;
           padding-bottom: 50px;
           transition: border-bottom 0.2s ease;
         }
-  
+
         p {
           line-height: 2em;
           color: ${theme.darkGray};
           transition: color 0.2s ease;
         }
-  
+
         p a {
           border-bottom: 1px solid ${theme.bodyBg};
           color: ${theme.link};
           line-height: 2em;
           transition: all 0.2s ease;
         }
-  
+
         p a:hover {
           border-bottom: 1px solid ${theme.link};
         }
-  
+
         #press {
           border-bottom: 1px solid ${theme.border};
           margin-bottom: 100px;
           padding-bottom: 50px;
           transition: border-bottom 0.2s ease;
         }
-  
+
         .project {
           margin-bottom: 50px;
         }
-  
+
         .project p {
           margin: 0;
         }
-  
+
         .sidebar {
           padding: 50px;
           width: 200px;
         }
-  
+
         .skills {
           display: flex;
         }
-  
+
         .skill {
           padding: 2px 10px;
           border: 1px solid ${theme.skill};
@@ -451,28 +450,28 @@ export default class Index extends React.Component {
           margin-top: 10px;
           transition: border 0.2s ease;
         }
-  
+
         .skill p {
           margin: 0;
         }
-  
+
         ul {
           padding: 0;
           list-style-type: none;
           margin-left: 15px;
         }
-  
+
         .work {
           margin-bottom: 100px;
         }
-  
+
         .wrapper {
           margin: 0 auto;
           max-width: 1000px;
           display: flex;
           justify-content: center;
         }
-  
+
         @media (max-width: 1200px) {
           .content {
             width: 100%;
@@ -503,7 +502,7 @@ export default class Index extends React.Component {
           .wrapper {
             flex-direction: column;
           }
-  
+
         }
       `}</style>
       <style global jsx>{`
