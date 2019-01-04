@@ -1,24 +1,24 @@
 export default ({ onClick, activeTheme }) => (
-  <div className={`toggle ${activeTheme}`}>
-    <span className={`light ${activeTheme === 'light' ? 'visible' : ''}`}>DARK</span>
-    <span className={`dark ${activeTheme === 'dark' ? 'visible' : ''}`}>LIGHT</span>
-    <button onClick={onClick} />
+    <div onClick={onClick} className={`toggle ${activeTheme}`}>
+      <span className={`light ${activeTheme === 'light' ? 'visible' : ''}`}>DARK</span>
+      <span className={`dark ${activeTheme === 'dark' ? 'visible' : ''}`}>LIGHT</span>
+      <div className="button"/>
     <style jsx>
       {`
         .toggle {
+          position: absolute;
+          cursor: pointer;
           position: fixed;
-          margin-top: 50px;
-          width: 100%;
-          max-width: 1000px;
-          text-align: right;
           display: flex;
           align-items: center;
           justify-content: flex-end;
           line-height: 12px;
           font-size: 12px;
+          margin-top: 55px;
+          margin-left: 685px;
         }
 
-        button {
+        .button {
           margin: 0;
           padding: 0;
           outline: 0;
@@ -28,18 +28,18 @@ export default ({ onClick, activeTheme }) => (
           width: 13px;
           height: 13px;
           border-radius: 50%;
-          margin-left: 10px;
           transition: all 0.2s ease;
         }
 
-        .toggle.dark button {
+        .toggle.dark .button {
           border-color: white;
           background-color: white;
         }
 
         span {
+          padding-right: 20px;
+          user-select: none;
           position: absolute;
-          right: 20px;
           opacity: 0;
           transition: opacity 0.2s ease, transform 0.2s ease;
         }
@@ -58,7 +58,7 @@ export default ({ onClick, activeTheme }) => (
 
         @media (max-width: 1200px) {
           .toggle {
-            top: 10px;
+            top: 0px;
             right: 20px;
           }
         }

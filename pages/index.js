@@ -2,6 +2,7 @@ import { createRef } from 'react'
 import Logotype from '../components/logotype'
 import DarkToggle from '../components/dark-toggle'
 import Head from 'next/head'
+import cookies from 'next-cookies'
 
 const themes = {
   light: {
@@ -25,13 +26,22 @@ const themes = {
 }
 
 export default class Index extends React.Component {
-  componentDidMount = () => {
-    this.scrollspy()
+  static async getInitialProps(ctx) {
+    return cookies(ctx)
   }
 
   state = {
     activeSection: '#experience',
-    activeTheme: 'light'
+    activeTheme: this.props.theme || 'dark'
+  }
+
+  setTheme = (activeTheme) => {
+    this.setState({ activeTheme })
+    document.cookie = `theme=${activeTheme}`
+  }
+
+  componentDidMount = () => {
+    this.scrollspy()
   }
 
   experience = createRef()
@@ -84,10 +94,11 @@ export default class Index extends React.Component {
 
   setTheme = (activeTheme) => {
     this.setState({ activeTheme })
+    document.cookie = `theme=${activeTheme}`
   }
 
   render() {
-    const { activeSection, activeTheme } = this.state
+    const { activeTheme, activeSection } = this.state
     const theme = themes[activeTheme]
 
     return (
@@ -121,11 +132,12 @@ export default class Index extends React.Component {
           </a>
         </div>
       </div>
-      <DarkToggle
-        onClick={() => activeTheme === 'light' ? this.setTheme('dark') : this.setTheme('light')}
-        activeTheme={activeTheme}
-      />
+
       <div className="content">
+        <DarkToggle
+          onClick={() => activeTheme === 'light' ? this.setTheme('dark') : this.setTheme('light')}
+          activeTheme={activeTheme}
+        />
         <div id="experience" ref={this.experience}>
           <div className="work">
             <h3>Jun 2016-Present</h3>
