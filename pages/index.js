@@ -32,7 +32,7 @@ export default class Index extends React.Component {
 
   state = {
     activeSection: '#experience',
-    activeTheme: this.props.theme || 'dark'
+    activeTheme: this.props.theme || 'light'
   }
 
   setTheme = (activeTheme) => {
@@ -446,7 +446,7 @@ export default class Index extends React.Component {
         }
 
         .sidebar {
-          padding: 50px;
+          padding: 50px 50px 0 0;
           width: 200px;
         }
 

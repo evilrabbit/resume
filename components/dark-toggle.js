@@ -25,8 +25,8 @@ export default ({ onClick, activeTheme }) => (
           cursor: pointer;
           border: 1px solid black;
           background-color: transparent;
-          width: 13px;
-          height: 13px;
+          width: 11px;
+          height: 11px;
           border-radius: 50%;
           transition: all 0.2s ease;
         }
